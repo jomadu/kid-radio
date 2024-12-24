@@ -86,3 +86,7 @@ speaker-test -c2
 ```
 LIBRESPOT_NAME="Kid Radio"
 ```
+
+## Spotify Creds
+
+https://developer.spotify.com/dashboard
