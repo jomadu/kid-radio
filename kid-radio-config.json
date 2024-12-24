@@ -1,0 +1,11 @@
+{
+    "adc_channel": 0,
+    "poll_interval": 0.6,
+    "static_file": "/path/to/static_noise.mp3",
+    "min_adc_value": 0,
+    "max_adc_value": 1023,
+    "min_station": 88.1,
+    "max_station": 107.9,
+    "station_step": 0.2,
+    "static_threshold": 0.1
+}
