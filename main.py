@@ -15,6 +15,14 @@ class StationFailedToPlay(RuntimeError):
 
 # Utility Functions
 
+def get_spotify_client():
+    return spotipy.Spotify(auth_manager=SpotifyOAuth(
+        client_id=get_env_variable("SPOTIFY_CLIENT_ID"),
+        client_secret=get_env_variable("SPOTIFY_CLIENT_SECRET"),
+        redirect_uri=get_env_variable("SPOTIFY_REDIRECT_URI"),
+        scope="user-modify-playback-state,user-read-playback-state"
+    ))
+
 def calculate_station(adc_value: int, min_adc_value: int, max_adc_value: int, min_station: float, max_station: float, station_step: float) -> float:
     """
     Map ADC value to a floating-point station frequency.
@@ -91,12 +99,7 @@ def main():
     # Replace ADC with the actual ADC library you're using
     adc = ADC()
 
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-        client_id=get_env_variable("SPOTIFY_CLIENT_ID"),
-        client_secret=get_env_variable("SPOTIFY_CLIENT_SECRET"),
-        redirect_uri=get_env_variable("SPOTIFY_REDIRECT_URI"),
-        scope="user-modify-playback-state,user-read-playback-state"
-    ))
+    sp = get_spotify_client()
 
     config = read_config("kid-radio-config.json")
     if config is None:
